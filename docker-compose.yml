@@ -1,0 +1,51 @@
+name: laravel-admin
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
+
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    image: laravel-admin-app
+    container_name: ${APP_NAME:-laravel}_app
+    networks:
+      - app-network
+    depends_on:
+      - db
+    environment:
+      - APP_NAME=${APP_NAME:-laravel}
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: laravel-admin-web
+    container_name: ${APP_NAME:-laravel}_web
+    networks:
+      - app-network
+    depends_on:
+      - app
+
+  db:
+    build:
+      context: docker/mariadb
+      dockerfile: Dockerfile
+    image: laravel-admin-db
+    container_name: ${APP_NAME:-laravel}_db
+    networks:
+      - app-network
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-laravel}
+      - MYSQL_USER=${DB_USERNAME:-laravel}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-root_secret}

@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      target: dev
+    ports:
+      - "5173:5173" # Vite HMR
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/php/conf.d/dev.ini:/usr/local/etc/php/conf.d/dev.ini
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  web:
+    build:
+      target: dev
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx
+
+  db:
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer:latest
+    container_name: ${APP_NAME:-laravel}_adminer
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
