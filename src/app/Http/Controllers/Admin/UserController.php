@@ -23,14 +23,14 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->has('search')) {
-            $search = $request->get('search');
+            $search = $request->input('search');
             $query->where('name', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%");
         }
 
         if ($request->has('sort')) {
-            $sort = $request->get('sort');
-            $direction = $request->get('direction', 'asc');
+            $sort = $request->input('sort');
+            $direction = $request->input('direction', 'asc');
             if (in_array($sort, ['id', 'name', 'email', 'created_at', 'role'])) {
                 $query->orderBy($sort, $direction);
             }
