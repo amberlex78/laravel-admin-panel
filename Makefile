@@ -65,6 +65,12 @@ composer: ## Запуск composer. Приклад: make composer c='require ...
 artisan: ## Запуск artisan. Приклад: make artisan c='migrate'
 	@$(PHP_EXEC) php artisan $(c)
 
+pint: ## Запуск Laravel Pint для виправлення стилю коду
+	@$(PHP_EXEC) ./vendor/bin/pint
+
+pint-test: ## Перевірка стилю коду без внесення змін
+	@$(PHP_EXEC) ./vendor/bin/pint --test
+
 tinker: ## Зайти в Laravel Tinker
 	@$(PHP_EXEC) php artisan tinker
 
