@@ -20,25 +20,11 @@ class UserController extends Controller
     {
         Gate::authorize('viewAny', User::class);
 
-        $query = User::query();
-
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
-        }
-
-        if ($request->has('sort')) {
-            $sort = $request->input('sort');
-            $direction = $request->input('direction', 'asc');
-            if (in_array($sort, ['id', 'name', 'email', 'created_at', 'role'])) {
-                $query->orderBy($sort, $direction);
-            }
-        } else {
-            $query->orderBy('id', 'desc');
-        }
-
-        $users = $query->paginate(5)->withQueryString();
+        $users = User::applyFilters(
+            $request,
+            ['name', 'email'], // searchable columns
+            ['id', 'name', 'email', 'role', 'created_at'] // sortable columns
+        )->paginate(5)->withQueryString();
 
         return view('admin.users.index', compact('users'));
     }

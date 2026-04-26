@@ -10,23 +10,7 @@
     </x-slot>
 
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-            <form action="{{ route('admin.users.index') }}" method="GET" class="flex items-center gap-3">
-                <div class="flex-1 max-w-sm">
-                    <label for="search" class="sr-only">Search</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        </div>
-                        <input type="text" name="search" id="search" value="{{ request('search') }}" class="block w-full pl-10 pr-4 py-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 text-sm rounded-md" placeholder="Search by name or email...">
-                    </div>
-                </div>
-                <x-button type="submit" variant="secondary">Search</x-button>
-                @if(request('search'))
-                    <x-button :href="route('admin.users.index')" variant="secondary">Clear</x-button>
-                @endif
-            </form>
-        </div>
+        <x-search-bar :route="route('admin.users.index')" placeholder="Search by name or email..." />
         
         <x-table>
             <x-slot name="head">
