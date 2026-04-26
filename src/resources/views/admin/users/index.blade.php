@@ -31,58 +31,11 @@
         <x-table>
             <x-slot name="head">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'id', 'direction' => request('sort') === 'id' && request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="group inline-flex items-center">
-                            ID
-                            @if(request('sort') === 'id' || !request('sort'))
-                                <span class="ml-2 flex-none rounded {{ request('sort') === 'id' ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200' : 'text-gray-400 opacity-0 group-hover:opacity-100' }}">
-                                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="{{ request('sort') === 'id' && request('direction') === 'desc' ? 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' : 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' }}" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            @endif
-                        </a>
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'direction' => request('sort') === 'name' && request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="group inline-flex items-center">
-                            Name
-                            <span class="ml-2 flex-none rounded {{ request('sort') === 'name' ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200' : 'text-gray-400 opacity-0 group-hover:opacity-100' }}">
-                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="{{ request('sort') === 'name' && request('direction') === 'desc' ? 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' : 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' }}" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'email', 'direction' => request('sort') === 'email' && request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="group inline-flex items-center">
-                            Email
-                            <span class="ml-2 flex-none rounded {{ request('sort') === 'email' ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200' : 'text-gray-400 opacity-0 group-hover:opacity-100' }}">
-                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="{{ request('sort') === 'email' && request('direction') === 'desc' ? 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' : 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' }}" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'role', 'direction' => request('sort') === 'role' && request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="group inline-flex items-center">
-                            Role
-                            <span class="ml-2 flex-none rounded {{ request('sort') === 'role' ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200' : 'text-gray-400 opacity-0 group-hover:opacity-100' }}">
-                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="{{ request('sort') === 'role' && request('direction') === 'desc' ? 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' : 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' }}" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'created_at', 'direction' => request('sort') === 'created_at' && request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="group inline-flex items-center">
-                            Joined
-                            <span class="ml-2 flex-none rounded {{ request('sort') === 'created_at' ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200' : 'text-gray-400 opacity-0 group-hover:opacity-100' }}">
-                                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="{{ request('sort') === 'created_at' && request('direction') === 'desc' ? 'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' : 'M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' }}" clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </th>
+                    <x-sortable-header sort="id" label="ID" />
+                    <x-sortable-header sort="name" label="Name" />
+                    <x-sortable-header sort="email" label="Email" />
+                    <x-sortable-header sort="role" label="Role" />
+                    <x-sortable-header sort="created_at" label="Joined" />
                     <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                 </tr>
             </x-slot>
