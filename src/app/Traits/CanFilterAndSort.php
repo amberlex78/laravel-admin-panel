@@ -13,7 +13,7 @@ trait CanFilterAndSort
     public function scopeApplyFilters(Builder $query, Request $request, array $searchableColumns = [], array $sortableColumns = []): Builder
     {
         // Search
-        if ($request->filled('search') && !empty($searchableColumns)) {
+        if ($request->filled('search') && ! empty($searchableColumns)) {
             $search = $request->input('search');
             $query->where(function ($q) use ($search, $searchableColumns) {
                 foreach ($searchableColumns as $column) {
