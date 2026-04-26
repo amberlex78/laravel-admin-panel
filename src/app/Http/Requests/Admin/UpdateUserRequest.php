@@ -25,7 +25,7 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($userId)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'role' => [
-                'required', 
+                'required',
                 Rule::enum(UserRole::class),
                 function ($attribute, $value, $fail) use ($userId) {
                     if ($this->user()->id === $userId && $value !== UserRole::Admin->value) {

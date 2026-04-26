@@ -19,7 +19,7 @@ class AdminMiddleware
             if ($request->expectsJson()) {
                 abort(403, 'Unauthorized.');
             }
-            
+
             return redirect()->route('dashboard')->with('error', 'You do not have permission to access the admin area.');
         }
 

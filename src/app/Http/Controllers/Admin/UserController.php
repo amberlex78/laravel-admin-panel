@@ -25,7 +25,7 @@ class UserController extends Controller
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                ->orWhere('email', 'like', "%{$search}%");
         }
 
         if ($request->has('sort')) {
@@ -46,6 +46,7 @@ class UserController extends Controller
     public function create(): View
     {
         Gate::authorize('create', User::class);
+
         return view('admin.users.create');
     }
 
@@ -60,12 +61,14 @@ class UserController extends Controller
     public function show(User $user): View
     {
         Gate::authorize('view', $user);
+
         return view('admin.users.show', compact('user'));
     }
 
     public function edit(User $user): View
     {
         Gate::authorize('update', $user);
+
         return view('admin.users.edit', compact('user'));
     }
 
@@ -86,7 +89,7 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         Gate::authorize('delete', $user);
-        
+
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');

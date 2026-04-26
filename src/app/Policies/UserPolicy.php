@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -50,7 +49,7 @@ class UserPolicy
     public function delete(User $user, User $model): bool
     {
         // Admin can delete anyone who is NOT an admin
-        // (Admin cannot delete themselves here, that's usually handled elsewhere, 
+        // (Admin cannot delete themselves here, that's usually handled elsewhere,
         // but for safety: they can't delete other admins anyway)
         return $user->isAdmin() && ! $model->isAdmin() && $user->id !== $model->id;
     }
